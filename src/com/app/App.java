@@ -47,7 +47,10 @@ public class App {
             Setting = Settings.item(9);
             String DataBase = Setting.getChildNodes().item(0).getTextContent();
 
-            URL = "jdbc:mysql://"+ host +":"+ port +"/"+ DataBase +"";
+            Setting = Settings.item(11);
+            String Type = Setting.getChildNodes().item(0).getTextContent();
+
+            URL = "jdbc:"+ Type +"://"+ host +":"+ port +"/"+ DataBase +"";
 
             connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD); 
             statement = connection.createStatement(); 
@@ -743,41 +746,33 @@ public class App {
                 }
                 case "6": { 
                     try {
-                        statement.executeUpdate("CREATE TABLE `priority` ( " +
-                            "`PriorityId` INT NOT NULL AUTO_INCREMENT, " +
-                            "`NamePriority` VARCHAR(128) NOT NULL, " +
-                            "PRIMARY KEY (`PriorityId`), " +
-                            "UNIQUE INDEX `PriorityId_UNIQUE` (`PriorityId` ASC) VISIBLE);");
-                        statement.executeUpdate("CREATE TABLE `type` ( " +
-                            "`TypeId` INT NOT NULL AUTO_INCREMENT, " +
-                            "`NameType` VARCHAR(128) NOT NULL, " +
-                            "PRIMARY KEY (`TypeId`), " + 
-                            "UNIQUE INDEX `TypeId_UNIQUE` (`TypeId` ASC) VISIBLE);");
-                        statement.executeUpdate("INSERT INTO Priority (NamePriority) VALUE " +
+                        statement.executeUpdate("CREATE TABLE Priority ( " +
+                            "PriorityId INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+                            "NamePriority VARCHAR(128) NOT NULL );");
+                        statement.executeUpdate("CREATE TABLE Type ( " +
+                            "TypeId INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+                            "NameType VARCHAR(128) NOT NULL );");
+                        statement.executeUpdate("INSERT INTO Priority (NamePriority) VALUES " +
                             "('Низкий'), " +
                             "('Средний'), " +
                             "('Высокий'), " +
                             "('Наивысший');");
-                        statement.executeUpdate("INSERT INTO Type (NameType) VALUE " +
+                        statement.executeUpdate("INSERT INTO Type (NameType) VALUES " +
                             "('Новая'), " +
                             "('В работе'), " +
                             "('Решена'), " +
                             "('Закрыта');");
-                        statement.executeUpdate("CREATE TABLE `project` ( " +
-                            "`IdProject` INT NOT NULL AUTO_INCREMENT, " +
-                            "`NameProject` VARCHAR(128) NOT NULL DEFAULT 'NameProject', " +
-                            "`ActivProject` TINYINT NOT NULL DEFAULT 1, " +
-                            "PRIMARY KEY (`IdProject`), " +
-                            "UNIQUE INDEX `IdProject_UNIQUE` (`IdProject` ASC) VISIBLE);");
-                        statement.executeUpdate("CREATE TABLE `user` ( " +
-                            "`IdUser` INT NOT NULL AUTO_INCREMENT, " +
-                            "`SurnameUser` VARCHAR(128) NOT NULL DEFAULT 'SurnameUser', " +
-                            "`NameUser` VARCHAR(128) NOT NULL DEFAULT 'NameUser', " +
-                            "`MiddleNameUser` VARCHAR(128) NULL, " +
-                            "`PostUser` VARCHAR(128) NOT NULL DEFAULT 'Post', " +
-                            "`ActivUser` VARCHAR(128) NOT NULL DEFAULT '1', " +
-                            "PRIMARY KEY (`IdUser`), " +
-                            "UNIQUE INDEX `IdUser_UNIQUE` (`IdUser` ASC) VISIBLE);");   
+                        statement.executeUpdate("CREATE TABLE Project ( " +
+                            "IdProject INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+                            "NameProject VARCHAR(128) NOT NULL, " +
+                            "ActivProject TINYINT NOT NULL DEFAULT 1);");
+                        statement.executeUpdate("CREATE TABLE User ( " +
+                            "IdUser INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+                            "SurnameUser VARCHAR(128) NOT NULL, " +
+                            "NameUser VARCHAR(128) NOT NULL, " +
+                            "MiddleNameUser VARCHAR(128), " +
+                            "PostUser VARCHAR(128) NOT NULL, " +
+                            "ActivUser TINYINT NOT NULL DEFAULT 1 );");   
                         statement.executeUpdate("CREATE TABLE Task ( " + 
                             "IdTask INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
                             "TopicTask  VARCHAR(100) NOT NULL DEFAULT 'TopicTask', " +
@@ -792,7 +787,6 @@ public class App {
                             "FOREIGN KEY (UserId) REFERENCES User (IdUser));");   
                         } catch (SQLException e) {
                             menu.setLog("Error: " + e);
-                            sysOut.println("Error: " + e);
                         } 
                     break;
                 }

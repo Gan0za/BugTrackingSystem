@@ -219,7 +219,6 @@ public class ListMenu {
         try(FileWriter writer = new FileWriter("log.txt", true))
         {
             Date date = new Date();
-            System.out.println(date.toString());
             writer.write(date.toString() + " " + masseng);
             writer.append('\n');
             writer.flush();

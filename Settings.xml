@@ -2,7 +2,8 @@
 <Settings>
     <USER_NAME>root</USER_NAME>
     <PASSWORD>toor</PASSWORD>
-    <HOST>188.168.51.30.21</HOST>
-    <PORT>5306</PORT>
+    <HOST>localhost</HOST>
+    <PORT>3306</PORT>
     <DataBase>testProject</DataBase>
+    <Type>mysql</Type>
 </Settings>
