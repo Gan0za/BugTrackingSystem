@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Settings>
+    <USER_NAME>root</USER_NAME>
+    <PASSWORD>toor</PASSWORD>
+    <HOST>188.168.51.30.21</HOST>
+    <PORT>5306</PORT>
+    <DataBase>testProject</DataBase>
+</Settings>
