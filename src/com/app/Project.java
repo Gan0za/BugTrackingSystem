@@ -1,33 +1,33 @@
 package com.app;
 
 public class Project {
-    private long IdProject;
-    private String NameProject;
+    private long idProject;
+    private String nameProject;
 
-    public Project (long id, String Name) {
-        this.IdProject = id;
-        this.NameProject = Name;
+    public Project (long id, String name) {
+        this.idProject = id;
+        this.nameProject = name;
     }
 
     public long getIdProject () {
-        return this.IdProject;
+        return this.idProject;
     }
 
-    public void setIdProject (long Id) {
-        this.IdProject = Id;
+    public void setIdProject (long id) {
+        this.idProject = id;
     }
 
     public String getNameProject () {
-        return this.NameProject;
+        return this.nameProject;
     }
 
-    public void setNameProject (String Name) {
-        this.NameProject = Name;
+    public void setNameProject (String name) {
+        this.nameProject = name;
     }
 
     @Override
     public String toString(){
-        return "Проект #: " + IdProject +
-        "; Название: " + NameProject  + "; ";
+        return "Проект #: " + idProject +
+        "; Название: " + nameProject  + "; ";
     }
 }

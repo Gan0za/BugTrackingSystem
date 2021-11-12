@@ -1,96 +1,96 @@
 package com.app;
 
 public class Task {
-    private long IdTask;
-    private String TopicTask;
-    private String ProjectId;
-    private String TypeId;
-    private String PriorityId;
-    private String UserId;
-    private String DescriptionTask;
+    private long idTask;
+    private String topicTask;
+    private String projectId;
+    private String typeId;
+    private String priorityId;
+    private String userId;
+    private String descriptionTask;
 
-    public Task (long id, String Topic, String Project, String Type, String Priority, String User, String Description) {
-        this.IdTask = id;
-        this.TopicTask = Topic;
-        this.ProjectId = Project;
-        this.TypeId = Type;
-        this.PriorityId = Priority;
-        this.UserId = User;
-        this.DescriptionTask = Description;
+    public Task (long id, String topic, String project, String type, String priority, String user, String description) {
+        this.idTask = id;
+        this.topicTask = topic;
+        this.projectId = project;
+        this.typeId = type;
+        this.priorityId = priority;
+        this.userId = user;
+        this.descriptionTask = description;
     }
 
-    public Task (long id, String Topic, String Project, String Type, String Priority, String User) {
-        this.IdTask = id;
-        this.TopicTask = Topic;
-        this.ProjectId = Project;
-        this.TypeId = Type;
-        this.PriorityId = Priority;
-        this.UserId = User;
-        this.DescriptionTask = "NULL";
+    public Task (long id, String topic, String project, String type, String priority, String user) {
+        this.idTask = id;
+        this.topicTask = topic;
+        this.projectId = project;
+        this.typeId = type;
+        this.priorityId = priority;
+        this.userId = user;
+        this.descriptionTask = "NULL";
     }
 
     public long getIdTask () {
-        return this.IdTask;
+        return this.idTask;
     }
 
     public String getTopicTask () {
-        return this.TopicTask;
+        return this.topicTask;
     }
 
     public String getProjectId () {
-        return this.ProjectId;
+        return this.projectId;
     }
 
     public String getTypeId () {
-        return this.TypeId;
+        return this.typeId;
     }
 
     public String getPriorityId () {
-        return this.PriorityId;
+        return this.priorityId;
     }
 
     public String getUserId () {
-        return this.UserId;
+        return this.userId;
     }
 
     public String getDescriptionTask () {
-        return this.DescriptionTask;
+        return this.descriptionTask;
     }
 
-    public void setIdTask (long Id) {
-        this.IdTask = Id;
+    public void setIdTask (long id) {
+        this.idTask = id;
     }
 
-    public void setTopicTask (String TopicTask) {
-        this.TopicTask = TopicTask;
+    public void setTopicTask (String topic) {
+        this.topicTask = topic;
     }
 
-    public void setProjectId (String ProjectId) {
-        this.ProjectId = ProjectId;
+    public void setProjectId (String project) {
+        this.projectId = project;
     }
 
-    public void setTypeId (String TypeId) {
-        this.TypeId = TypeId;
+    public void setTypeId (String type) {
+        this.typeId = type;
     }
 
-    public void setPriorityId (String PriorityId) {
-        this.PriorityId = PriorityId;
+    public void setPriorityId (String priority) {
+        this.priorityId = priority;
     }
 
-    public void setUserId (String UserId) {
-        this.UserId = UserId;
+    public void setUserId (String user) {
+        this.userId = user;
     }
 
-    public void setDescriptionTask (String DescriptionTask) {
-        this.DescriptionTask = DescriptionTask;
+    public void setDescriptionTask (String description) {
+        this.descriptionTask = description;
     }
 
     @Override
     public String toString(){
-        return "Задача #: " + IdTask +
-        "; Тема: " + TopicTask + "; Проект: " + ProjectId + 
-        "; Тип: " + TypeId + "; Приоритет: " + 
-        PriorityId + "; Исполнитель : " + UserId + 
-        "; Описание: " + DescriptionTask + "; ";
+        return "Задача #: " + idTask +
+        "; Тема: " + topicTask + "; Проект: " + projectId + 
+        "; Тип: " + typeId + "; Приоритет: " + 
+        priorityId + "; Исполнитель : " + userId + 
+        "; Описание: " + descriptionTask + "; ";
     }
 }
