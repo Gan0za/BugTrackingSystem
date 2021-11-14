@@ -15,10 +15,10 @@ public class App {
     //  Database credentials
     static final String USER = "sa";
     static final String PASS = "";
-    public static void main(String[] args) throws Throwable, SQLException {
-        Connection connection = null;
-        Statement statement = null;
-        PreparedStatement prepareStatement = null;
+    public static void main(String[] args) throws Throwable {
+        Connection connection;
+        Statement statement;
+        PreparedStatement prepareStatement;
         Scanner scan = new Scanner(System.in);
         PrintStream sysOut = new PrintStream(System.out);
         ListMenu menu = new ListMenu();
@@ -144,9 +144,9 @@ public class App {
                                 case "1" -> {
                                     try {
                                         sysOut.print("Введите номер проекта:> ");
-                                        String NambeProject = scan.nextLine();
-                                        menu.setLog("Вывод на экран проектов с номерами " + NambeProject + ".");
-                                        ResultSet resultSet = statement.executeQuery(menu.getSelectFilterProject(NambeProject, "IdProject"));
+                                        String str = scan.nextLine();
+                                        menu.setLog("Вывод на экран проектов с номерами " + str + ".");
+                                        ResultSet resultSet = statement.executeQuery(menu.getSelectFilterProject(str, "IdProject"));
                                         menu.getWheleProject(resultSet);
                                     } catch (SQLException e) {
                                         menu.setLog("Error: " + e);
