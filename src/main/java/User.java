@@ -1,4 +1,3 @@
-package com.app;
 
 public class User {
     private long idUser;
@@ -66,8 +65,8 @@ public class User {
     @Override
     public String toString(){
         return "Пользователь #: " + idUser +
-        "; ФИО: " + surnameUser + " " + nameUser + 
-        " " + middleNameUser + "; Должность: " + 
-        postUser + "; ";
+                "; ФИО: " + surnameUser + " " + nameUser +
+                " " + middleNameUser + "; Должность: " +
+                postUser + "; ";
     }
 }

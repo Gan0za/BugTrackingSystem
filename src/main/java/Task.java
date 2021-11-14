@@ -1,4 +1,3 @@
-package com.app;
 
 public class Task {
     private long idTask;
@@ -88,9 +87,9 @@ public class Task {
     @Override
     public String toString(){
         return "Задача #: " + idTask +
-        "; Тема: " + topicTask + "; Проект: " + projectId + 
-        "; Тип: " + typeId + "; Приоритет: " + 
-        priorityId + "; Исполнитель : " + userId + 
-        "; Описание: " + descriptionTask + "; ";
+                "; Тема: " + topicTask + "; Проект: " + projectId +
+                "; Тип: " + typeId + "; Приоритет: " +
+                priorityId + "; Исполнитель : " + userId +
+                "; Описание: " + descriptionTask + "; ";
     }
 }

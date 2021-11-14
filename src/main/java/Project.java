@@ -1,5 +1,3 @@
-package com.app;
-
 public class Project {
     private long idProject;
     private String nameProject;
@@ -28,6 +26,6 @@ public class Project {
     @Override
     public String toString(){
         return "Проект #: " + idProject +
-        "; Название: " + nameProject  + "; ";
+                "; Название: " + nameProject  + "; ";
     }
 }
