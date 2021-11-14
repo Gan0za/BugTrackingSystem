@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class ListMenu {
     private final PrintStream sysOut = new PrintStream(System.out);
 
-    public void getStartMenu() {
+    public void getStartMenu() { //Главное меню
         sysOut.println("==================================Стартовое меню==================================");
         sysOut.println("Выберите действие:");
         sysOut.println("1. Вывод общей информации");
@@ -22,7 +22,7 @@ public class ListMenu {
         sysOut.print("Введите номер действия:> ");
     }
 
-    public void getEntitySelectionMenu() {
+    public void getEntitySelectionMenu() { //Меню выбора сущностей
         sysOut.println("===============================Меню выбора сущностей===============================");
         sysOut.println("Выберите сущность:");
         sysOut.println("1. Пользователи");
@@ -33,7 +33,7 @@ public class ListMenu {
         sysOut.print("Введите номер сущности:> ");
     }
 
-    public void getFilterSelectionProjectMenu() {
+    public void getFilterSelectionProjectMenu() { //Фильтры для Проектам
         sysOut.println("================================Меню выбора фильтра================================");
         sysOut.println("Выберите фильтр:");
         sysOut.println("1. Поиск по номеру");
@@ -42,7 +42,7 @@ public class ListMenu {
         sysOut.println("===================================================================================");
         sysOut.print("Введите номер фильтра:> ");
     }
-    public void getFilterSelectionUserMenu() {
+    public void getFilterSelectionUserMenu() { //Фильтры для Пользователей
         sysOut.println("================================Меню выбора фильтра================================");
         sysOut.println("Выберите фильтр:");
         sysOut.println("1. Поиск по номеру");
@@ -54,7 +54,7 @@ public class ListMenu {
         sysOut.println("===================================================================================");
         sysOut.print("Введите номер фильтра:> ");
     }
-    public void getFilterSelectionTaskMenu() {
+    public void getFilterSelectionTaskMenu() {  //Фильтры для Задач
         sysOut.println("================================Меню выбора фильтра================================");
         sysOut.println("Выберите фильтр:");
         sysOut.println("1. Поиск по номеру");
@@ -69,7 +69,7 @@ public class ListMenu {
         sysOut.print("Введите номер фильтра:> ");
     }
 
-    public void getProjectValueSelectionMenu() {
+    public void getProjectValueSelectionMenu() { //Меню обновлений для Проектов
         sysOut.println("=============================Меню изменения атрибутов=============================");
         sysOut.println("Выберите атрибут:");
         sysOut.println("1. Изменить название проекта");
@@ -78,7 +78,7 @@ public class ListMenu {
         sysOut.println("==================================================================================");
         sysOut.print("Введите номер атрибут:> ");
     }
-    public void getUserValueSelectionMenu() {
+    public void getUserValueSelectionMenu() { //Меню обновлений для Пользователей
         sysOut.println("=============================Меню изменения атрибутов=============================");
         sysOut.println("Выберите атрибут:");
         sysOut.println("1. Изменить фамилию пользователя");
@@ -90,7 +90,7 @@ public class ListMenu {
         sysOut.println("===================================================================================");
         sysOut.print("Введите номер атрибут:> ");
     }
-    public void getTaskValueSelectionMenu() {
+    public void getTaskValueSelectionMenu() { //Меню обновления Задач
         sysOut.println("=============================Меню изменения атрибутов=============================");
         sysOut.println("Выберите атрибут:");
         sysOut.println("1. Изменить тему задачи");
@@ -103,7 +103,7 @@ public class ListMenu {
         sysOut.println("==================================================================================");
         sysOut.print("Введите номер атрибут:> ");
     }
-    public void getSettingsMenu() {
+    public void getSettingsMenu() { //Меню настроек
         sysOut.println("=============================Меню настроек=============================");
         sysOut.println("Выберите пункт меню:");
         sysOut.println("1. Изменить название базы данных");
@@ -113,7 +113,7 @@ public class ListMenu {
         sysOut.print("Введите номер атрибут:> ");
     }
 
-    public String getSelectAllTasks () {
+    public String getSelectAllTasks () { //Запрос выводящий все активные задачи
         return ("SELECT " +
                 "Task.IdTask, " +
                 "Task.TopicTask, " +
@@ -131,19 +131,27 @@ public class ListMenu {
                 "ORDER BY Task.IdTask;");
     }
 
+    //Запрос выводящий всех активных Пользователей
     public String getSelectAllUser () {
         return ("SELECT * FROM user WHERE ActivUser <> 0;");
     }
+
+    //Запрос выводящий все активные Проекты
     public String getSelectAllProject () {
         return ("SELECT * FROM project WHERE ActivProject <> 0;");
     }
 
+    //Выборка для Проектов
     public String getSelectFilterProject (String NameProject, String Filter) {
         return ("SELECT * FROM Project WHERE Project."+ Filter + " LIKE '%" + NameProject + "%';");
     }
+
+    //Выборка для Пользователей
     public String getSelectFilterUser (String user, String Filter) {
         return ("SELECT * FROM User WHERE User."+ Filter + " LIKE '%" + user + "%';");
     }
+
+    //Выборка для Задач
     public String getSelectFilterTask (String task, String Filter) {
         return ("SELECT " +
                 "Task.IdTask, " +
@@ -162,28 +170,38 @@ public class ListMenu {
                 "ORDER BY Task.IdTask;");
     }
 
+    //Добавить новый проект
     public String getInsertProject () {
         return ("INSERT INTO Project (NameProject) VALUES(?);");
     }
+
+    //Добавить нового Пользователя
     public String getInsertUser () {
         return ("INSERT INTO User (SurnameUser, NameUser, MiddleNameUser, PostUser) VALUES(?, ?, ?, ?);");
     }
+
+    //Добавить новую Задачу
     public String getInsertTask () {
         return ("INSERT INTO Task (TopicTask, ProjectId, TypeId, PriorityId, UserId, DescriptionTask) VALUES(?, ?, ?, ?, ?, ?);");
     }
 
+    //Обновление  на все варианты
     public String getUpdate (String table, String column, String value, String condition, String value2) {
         return ("UPDATE `"+ table +"` SET `"+ column +"` = "+ value +" WHERE `"+ condition +"` = "+ value2 +";");
     }
 
+    //Запрос считающий сумму при условии что задача не закрыта
     public String getCount (String table, String parameter, String id) {
         return ("SELECT COUNT("+table+"."+ parameter +") FROM "+table+" WHERE "+table+"."+ parameter +" = "+ id +
                 " AND Task.TypeId <> 4;");
     }
+
+    //Запрос считающий сумму
     public String getCountNotAnd (String table, String parameter, String id) {
         return ("SELECT COUNT("+table+"."+ parameter +") FROM "+table+" WHERE "+table+"."+ parameter +" = "+ id +";");
     }
 
+    //Отрисовка Пользователей
     public void getWheleUser(ResultSet resultSet) throws SQLException{
         while (resultSet.next()) {
             User user = new User(resultSet.getLong(1),
@@ -193,14 +211,17 @@ public class ListMenu {
                     resultSet.getString(5));
             sysOut.println(user);
         }
-
     }
+
+    //Отрисовка Проектов
     public void getWheleProject(ResultSet resultSet) throws SQLException{
         while (resultSet.next()) {
             Project project = new Project(resultSet.getLong(1), resultSet.getString(2));
             sysOut.println(project);
         }
     }
+
+    //Отрисовка Задач
     public void getWheleTask(ResultSet resultSet) throws SQLException{
         while (resultSet.next()) {
             Task task = new Task(resultSet.getLong(1),
@@ -213,6 +234,8 @@ public class ListMenu {
             sysOut.println(task);
         }
     }
+
+    //Обработка сумм (для проверок)
     public String getWheleCount(ResultSet resultSet) throws SQLException{
         var testing = "";
         while (resultSet.next()) {
@@ -221,6 +244,7 @@ public class ListMenu {
         return testing;
     }
 
+    //Запись в Лог
     public void setLog (String massange){
         try(FileWriter writer = new FileWriter("log.log", true))
         {
@@ -234,6 +258,7 @@ public class ListMenu {
         }
     }
 
+    //Запись настроек
     public void setSettings (String massange){
         try(FileWriter writer = new FileWriter("settings.txt", false))
         {
