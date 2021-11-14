@@ -16,7 +16,7 @@ public class ListMenu {
         sysOut.println("3. Добавить новую запись");
         sysOut.println("4. Обновить информацию");
         sysOut.println("5. Удаление");
-        sysOut.println("6. Настройки. Инициализация базы данных");
+        sysOut.println("6. Настройки");
         sysOut.println("7. Выход из программы");
         sysOut.println("===================================================================================");
         sysOut.print("Введите номер действия:> ");
@@ -103,6 +103,15 @@ public class ListMenu {
         sysOut.println("==================================================================================");
         sysOut.print("Введите номер атрибут:> ");
     }
+    public void getSettingsMenu() {
+        sysOut.println("=============================Меню настроек=============================");
+        sysOut.println("Выберите пункт меню:");
+        sysOut.println("1. Изменить название базы данных");
+        sysOut.println("2. Инициализировать базу данных");
+        sysOut.println("3. Назад");
+        sysOut.println("=======================================================================");
+        sysOut.print("Введите номер атрибут:> ");
+    }
 
     public String getSelectAllTasks () {
         return ("SELECT " +
@@ -121,6 +130,7 @@ public class ListMenu {
                 "WHERE Task.TypeId <> 4 " +
                 "ORDER BY Task.IdTask;");
     }
+
     public String getSelectAllUser () {
         return ("SELECT * FROM user WHERE ActivUser <> 0;");
     }
@@ -212,7 +222,7 @@ public class ListMenu {
     }
 
     public void setLog (String massange){
-        try(FileWriter writer = new FileWriter("log.txt", true))
+        try(FileWriter writer = new FileWriter("log.log", true))
         {
             Date date = new Date();
             writer.write(date + " " + massange);
@@ -221,6 +231,17 @@ public class ListMenu {
         }
         catch(IOException e){
             System.out.println("Error write log: \n"+e.getMessage());
+        }
+    }
+
+    public void setSettings (String massange){
+        try(FileWriter writer = new FileWriter("settings.txt", false))
+        {
+            writer.write(massange);
+            writer.flush();
+        }
+        catch(IOException e){
+            System.out.println("Error read settings file: \n"+e.getMessage());
         }
     }
 }

@@ -1,21 +1,19 @@
-import java.util.Scanner;
 import java.io.PrintStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.*;
+import java.util.Scanner;
 
 public class App {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "org.h2.Driver";
-    static final String DB_URL = "jdbc:h2:./test";
 
     //  Database credentials
     static final String USER = "sa";
     static final String PASS = "";
     public static void main(String[] args) throws Throwable {
+        String settingsFile = Files.readString(Paths.get("./settings.txt"));
+        String DB_URL = "jdbc:h2:./" + settingsFile;
         Connection connection;
         Statement statement;
         PreparedStatement prepareStatement;
@@ -610,48 +608,67 @@ public class App {
                     }
                 }
                 case "6" -> {
-                    try {
-                        statement.executeUpdate("CREATE TABLE Priority ( " +
-                                "PriorityId INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
-                                "NamePriority VARCHAR(128) NOT NULL );");
-                        statement.executeUpdate("CREATE TABLE Type ( " +
-                                "TypeId INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
-                                "NameType VARCHAR(128) NOT NULL );");
-                        statement.executeUpdate("INSERT INTO Priority (NamePriority) VALUES " +
-                                "('Низкий'), " +
-                                "('Средний'), " +
-                                "('Высокий'), " +
-                                "('Наивысший');");
-                        statement.executeUpdate("INSERT INTO Type (NameType) VALUES " +
-                                "('Новая'), " +
-                                "('В работе'), " +
-                                "('Решена'), " +
-                                "('Закрыта');");
-                        statement.executeUpdate("CREATE TABLE Project ( " +
-                                "IdProject INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
-                                "NameProject VARCHAR(128) NOT NULL, " +
-                                "ActivProject TINYINT NOT NULL DEFAULT 1);");
-                        statement.executeUpdate("CREATE TABLE User ( " +
-                                "IdUser INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
-                                "SurnameUser VARCHAR(128) NOT NULL, " +
-                                "NameUser VARCHAR(128) NOT NULL, " +
-                                "MiddleNameUser VARCHAR(128), " +
-                                "PostUser VARCHAR(128) NOT NULL, " +
-                                "ActivUser TINYINT NOT NULL DEFAULT 1 );");
-                        statement.executeUpdate("CREATE TABLE Task ( " +
-                                "IdTask INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
-                                "TopicTask  VARCHAR(100) NOT NULL DEFAULT 'TopicTask', " +
-                                "ProjectId  INT NOT NULL, " +
-                                "TypeId INT NOT NULL DEFAULT 1, " +
-                                "PriorityId INT NOT NULL DEFAULT 1, " +
-                                "UserId INT NOT NULL, " +
-                                "DescriptionTask VARCHAR(500), " +
-                                "FOREIGN KEY (ProjectId) REFERENCES Project (IdProject), " +
-                                "FOREIGN KEY (TypeId) REFERENCES Type (TypeId), " +
-                                "FOREIGN KEY (PriorityId) REFERENCES Priority (PriorityId), " +
-                                "FOREIGN KEY (UserId) REFERENCES User (IdUser));");
-                    } catch (SQLException e) {
-                        menu.setLog("Error: " + e);
+                    menu.getSettingsMenu();
+                    String SettingsMenu = scan.nextLine();
+                    switch (SettingsMenu) {
+                        case "1" -> {
+                            sysOut.print("Введите номер новой базы данных:> ");
+                            String nameDB = scan.nextLine();
+                            menu.setSettings(nameDB);
+                            menu.setLog("База данных переименована на: " + nameDB);
+                            sysOut.println("Перезагрузите программу что бы применить настройки.");
+                            sysOut.println("Незабудте проинициализировать новую базу данных!");
+                        }
+                        case "2" -> {
+                            try {
+                                statement.executeUpdate("CREATE TABLE Priority ( " +
+                                        "PriorityId INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+                                        "NamePriority VARCHAR(128) NOT NULL );");
+                                statement.executeUpdate("CREATE TABLE Type ( " +
+                                        "TypeId INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+                                        "NameType VARCHAR(128) NOT NULL );");
+                                statement.executeUpdate("INSERT INTO Priority (NamePriority) VALUES " +
+                                        "('Низкий'), " +
+                                        "('Средний'), " +
+                                        "('Высокий'), " +
+                                        "('Наивысший');");
+                                statement.executeUpdate("INSERT INTO Type (NameType) VALUES " +
+                                        "('Новая'), " +
+                                        "('В работе'), " +
+                                        "('Решена'), " +
+                                        "('Закрыта');");
+                                statement.executeUpdate("CREATE TABLE Project ( " +
+                                        "IdProject INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+                                        "NameProject VARCHAR(128) NOT NULL, " +
+                                        "ActivProject TINYINT NOT NULL DEFAULT 1);");
+                                statement.executeUpdate("CREATE TABLE User ( " +
+                                        "IdUser INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+                                        "SurnameUser VARCHAR(128) NOT NULL, " +
+                                        "NameUser VARCHAR(128) NOT NULL, " +
+                                        "MiddleNameUser VARCHAR(128), " +
+                                        "PostUser VARCHAR(128) NOT NULL, " +
+                                        "ActivUser TINYINT NOT NULL DEFAULT 1 );");
+                                statement.executeUpdate("CREATE TABLE Task ( " +
+                                        "IdTask INT NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
+                                        "TopicTask  VARCHAR(100) NOT NULL DEFAULT 'TopicTask', " +
+                                        "ProjectId  INT NOT NULL, " +
+                                        "TypeId INT NOT NULL DEFAULT 1, " +
+                                        "PriorityId INT NOT NULL DEFAULT 1, " +
+                                        "UserId INT NOT NULL, " +
+                                        "DescriptionTask VARCHAR(500), " +
+                                        "FOREIGN KEY (ProjectId) REFERENCES Project (IdProject), " +
+                                        "FOREIGN KEY (TypeId) REFERENCES Type (TypeId), " +
+                                        "FOREIGN KEY (PriorityId) REFERENCES Priority (PriorityId), " +
+                                        "FOREIGN KEY (UserId) REFERENCES User (IdUser));");
+                                menu.setLog("База данных успешно инициализирована");
+                                sysOut.println("База данных успешно инициализирована!");
+                            } catch (SQLException e) {
+                                menu.setLog("Error: " + e);
+                            }
+                        }
+                        case "3" -> {
+                        }
+                        default -> sysOut.println("Введите корректный номер сущности!");
                     }
                 }
                 case "7" -> run = false;
