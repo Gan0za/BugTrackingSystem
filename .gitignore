@@ -23,3 +23,8 @@
 hs_err_pid*
 # Игнорирование тестовых пакетов
 *test*
+# ignore file db
+*.db
+
+# ignore directory idea
+/.idea
