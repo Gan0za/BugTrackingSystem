@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css" >
+    <link rel="stylesheet" type="text/css" href="css/tasks.css" >
+    <title>BugTrackingSystem</title>
+    <script src="./js/tasks.js" defer></script>
+    <script src="./js/tasks_filter.js" defer></script>
+</head>
+<body>
+    <div class="app">
+        <div class="menu">
+            <a href="./app.html">Главное</a>
+            <a href="./tasks.html">Задачи</a>
+            <a href="./projects.html">Проекты</a>
+            <a href="./users.html">Пользователи</a>
+            <a href="./settings.html">Настройки</a>
+        </div>
+        <div class="content">
+           <div class="filters">
+                <div class="button__filter">
+                    <div id="refresh">Обновить</div>
+                    <div id="export">Выгрузить</div>
+                    <div id="new__item">Добавить</div>
+                </div>
+                <div class="filter__button">
+                   <p id="project__header">Проекты: 
+                       <select id="projekt__select" size="1" name="projekt__select[]">
+                           <option value="0">All</option>
+                       </select>
+                   </p>
+                   <p id="type__header">Статус: 
+                        <select id="type__select" size="1" name="type__select[]">
+                            <option value="0">All</option>
+                        </select>
+                    </p>
+                    <p id="search__text__header">Содержит: 
+                        <input type="text" name="like__text__search" id="like__text__search" placeholder="Введите текст">
+                    </p>
+                    <p id="user__header">Ведёт: 
+                        <select id="user__select" size="1" name="user__select[]">
+                            <option value="0">All</option>
+                        </select>
+                    </p>
+                    <p id="priority__header">Приоритет: 
+                        <select id="priority__select" size="1" name="priority__select[]">
+                            <option value="0">All</option>
+                        </select>
+                    </p>
+                    <div id="search__tasks">Применить</div>
+                </div>
+            </div>
+            <div class="tasks"></div>
+        </div>
+        <template id="task__template">
+            <div class="task">
+                <h3 class="topic_task"></h3>
+                <img src="./img/polocki.png" alt="setings" class="setings__img">
+                <h4 class="project"></h4>
+                <h4 class="type"></h4>
+                <h4 class="priority"></h4>
+                <h4 class="user"></h4>
+                <p class="description"></p>
+           </div>
+        </template>
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css" >
+    <link rel="stylesheet" type="text/css" href="css/users.css" >
+    <title>BugTrackingSystem</title>
+    <script src="./js/users.js" defer></script>
+    <script src="./js/users_filter.js" defer></script>
+</head>
+<body>
+    <div class="app">
+        <div class="menu">
+            <a href="./app.html">Главное</a>
+            <a href="./tasks.html">Задачи</a>
+            <a href="./projects.html">Проекты</a>
+            <a href="./users.html">Пользователи</a>
+            <a href="./settings.html">Настройки</a>
+        </div>
+        <div class="content">
+            <div class="filters">
+                <div class="button__filter">
+                    <div id="refresh">Обновить</div>
+                    <div id="export">Выгрузить</div>
+                    <div id="new__item">Добавить</div>
+                </div>
+                <div class="filter__button">
+                    <p id="users__header">Пользователь: 
+                        <select id="users__select" size="1" name="users__select[]">
+                            <option value="0">All</option>
+                        </select>
+                    </p>
+                    <p id="post__header">Должность: 
+                        <select id="post__select" size="1" name="post__select[]">
+                            <option value="0">All</option>
+                        </select>
+                    </p>
+                    <p id="search__text__header">Содержит: 
+                        <input type="text" name="like__text__search" id="like__text__search" placeholder="Введите текст">
+                    </p>
+                    <p id="authority__header">Доступ: 
+                        <select id="authority__select" size="1" name="authority__select[]">
+                            <option value="0">All</option>
+                        </select>
+                    </p>
+                    <div id="search__users">Применить</div>
+                </div>
+            </div>
+            <div class="users"></div>
+        </div>
+        <template id="user__template">
+            <div class="user">
+                <h3 class="name"></h3>
+                <img src="./img/polocki.png" alt="setings" class="setings__img">
+                <p class="header__post">Должность:</p>
+                <h4 class="post"></h4>
+                <p class="header_authority">Доступ:</p>
+                <h4 class="authority"></h4>
+                <p class="description"></p>
+                <p class="header_activ_tasks">Колличество активных задач:</p>
+                <p class="activ__tasks"></p>
+                <p class="header_activ_projects">Колличество активных проектов:</p>
+                <p class="activ__projects"></p>
+            </div>
+        </template>
+    </div>
+</body>
+</html>

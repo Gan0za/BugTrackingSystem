@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css" >
+    <link rel="stylesheet" type="text/css" href="css/projects.css" >
+    <title>BugTrackingSystem</title>
+    <script src="./js/projects.js" defer></script>
+</head>
+<body>
+    <div class="app">
+        <div class="menu">
+            <a href="./app.html">Главное</a>
+            <a href="./tasks.html">Задачи</a>
+            <a href="./projects.html">Проекты</a>
+            <a href="./users.html">Пользователи</a>
+            <a href="./settings.html">Настройки</a>
+        </div>
+        <div class="content">
+            <div class="filters">
+                <div class="button__filter">
+                    <div id="refresh">Обновить</div>
+                    <div id="export">Выгрузить</div>
+                    <div id="new__item">Добавить</div>
+                </div>
+                <div class="filter__button">
+                    <p id="search__text__header">Содержит: 
+                        <input type="text" name="like__text__search" id="like__text__search" placeholder="Введите текст">
+                    </p>
+                    <div id="search__projects">Применить</div>
+                </div>
+            </div>
+            <div class="projects"></div>
+        </div>
+        <template id="project__template">
+            <div class="project">
+                <h3 class="name"></h3>
+                <img src="./img/polocki.png" alt="setings" class="setings__img">
+                <p class="description"></p>
+                <p class="header_activ_tasks">Активные задачи:</p>
+                <p class="activ__tasks"></p>
+            </div>
+        </template>
+    </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+.users {
+    grid-column: span 12;
+    margin: 0px;
+}
+.user {
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 10px;
+}
+
+.user .name {
+    grid-column: span 11;
+}
+.user .header__post {
+    grid-column: span 2;
+}
+.user .post {
+    grid-column: span 4;
+}
+.user .header_authority {
+    grid-column: span 2;
+}
+.user .authority {
+    grid-column: span 4;
+}
+.user .description {
+    grid-column: span 12;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.user .header_activ_tasks {
+    grid-column: span 3;
+}
+.user .activ__tasks {
+    grid-column: span 1;
+}
+.user .header_activ_projects {
+    grid-column: span 3;
+}
+.user .activ__projects {
+    grid-column: span 1;
+}
+
+.user .setings__img {
+    cursor: pointer;
+    visibility: hidden;
+    grid-column: span 1;
+    height: 50px;
+    width: 50px;
+}
+
+.user:hover .setings__img {
+    visibility: visible;
+}
+
+.filters {
+    grid-column: span 12;
+    border: 2px solid rgb(46, 46, 46);
+    margin: 5px 0px 5px 0px;
+    padding: 5px;
+}
+
+.button__filter {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 10px;
+}
+
+.button__filter div {
+    cursor: pointer;
+    grid-column: span 2;
+    font-size: 100%; /* Размер текста в ссылках. */
+    padding: 5px;
+    text-align: center;
+    background: #797a7a; /* Цвет блоков меню. (#0db5b5)*/
+    color: #383838; /* Цвет текста в блоках меню. (#3f3f3f)*/ 
+}
+
+.button__filter div:hover {
+    background: #b8b8b8; 
+    color: #333333;
+}
+
+.filter__button {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+}
+
+#search__users {
+    cursor: pointer;
+    grid-column: 3/4;
+    margin: 5px;
+    font-size: 100%; /* Размер текста в ссылках. */
+    padding: 5px;
+    text-align: center;
+    background: #797a7a; /* Цвет блоков меню. (#0db5b5)*/
+    color: #383838; /* Цвет текста в блоках меню. (#3f3f3f)*/
+}
+
+#search__users:hover {
+    background: #b8b8b8; 
+    color: #333333;
+}
